@@ -1140,6 +1140,14 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 20500000, guid: d8b67d0d451c58f4c8794423e928d15f, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.48179662
+      objectReference: {fileID: 0}
+    - target: {fileID: 20500000, guid: d8b67d0d451c58f4c8794423e928d15f, type: 3}
+      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
+      value: 0.1677551
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8b67d0d451c58f4c8794423e928d15f, type: 3}
   m_IsPrefabParent: 0
