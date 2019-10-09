@@ -24,7 +24,7 @@ public class FreeCameraUpRight : MonoBehaviour {
     public float sens = 5.0f;
     public float smooting = 2.0f;
     public float maxYAngle = 85f;
-
+    public bool rotate = true;
     public GameObject character;
     public GameObject flashLight;
 
@@ -35,7 +35,7 @@ public class FreeCameraUpRight : MonoBehaviour {
 
     private void Update()
     {
-        if (!Cursor.visible)
+        if (rotate)
         {
             var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
 
