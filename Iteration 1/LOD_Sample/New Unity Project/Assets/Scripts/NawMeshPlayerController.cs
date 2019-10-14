@@ -1,10 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class NawMeshPlayerController : MonoBehaviour {
 
     public Camera scenecamera;
     public NavMeshAgent playerAgent;
+
+    public ThirdPersonCharacter characterScript;
+
+
+    void Start()
+    {
+        playerAgent.updateRotation = false;
+    }
+
 	// Update is called once per frame
 	void Update ()
     {
@@ -17,6 +27,16 @@ public class NawMeshPlayerController : MonoBehaviour {
             {
                 playerAgent.SetDestination(rayHit.point);
             }
+        }
+
+
+        if (playerAgent.remainingDistance > playerAgent.stoppingDistance)
+        {
+            characterScript.Move(playerAgent.desiredVelocity, false, false);
+        }
+        else
+        {
+            characterScript.Move(Vector3.zero, false, false);
         }
 	}
 }
