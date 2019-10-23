@@ -24,6 +24,7 @@ ModelImporter:
     4300004: protector_Lod_2
     4300006: magazine_Lod_2
     9500000: //RootNode
+    2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
