@@ -74,6 +74,7 @@ public class SceneController : MonoBehaviour, photonConnect.IPhotonConnectDelega
     {
         this.UIController.ConnectedToRoomState(name);
         Game.gameObject.SetActive(true);
+        Game.InitializeGame();
     }
     #endregion
 

@@ -480,7 +480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &250332784
 Transform:
   m_ObjectHideFlags: 0
@@ -509,8 +509,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpawn: {fileID: 1274433352}
-  playerPrefab: {fileID: 787583711388894047, guid: 2d02bfedc2dbff8419ca0bd8d5411a9f,
-    type: 3}
 --- !u!1 &422150679
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +747,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.04612399}
   m_AnchorMax: {x: 0.9743579, y: 0.34}
-  m_AnchoredPosition: {x: 4, y: -1.800003}
+  m_AnchoredPosition: {x: 4, y: -1.8000183}
   m_SizeDelta: {x: -6, y: -3.6782932}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &573854381

@@ -98,7 +98,7 @@ public class UIController : MonoBehaviour
         {
             this.informationText.text = String.Format("Connected to \"{0}\".", roomName);
         }
-        this.DisConnectButton.gameObject.SetActive(false);
+        this.DisConnectButton.gameObject.SetActive(true);
     }
 
     public void JoinedToLobbyState()
