@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: ac1efcd5225b78d4881554c6ccc5f063
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Black_Horse
+    100002: //RootNode
+    100004: directionalLight1
+    100006: directionalLight2
+    100008: Head
+    100010: Leg_Front_R1
+    100012: Leg_Front_R2
+    100014: Leg_Front_R3
+    100016: Leg_Front_R4
+    100018: Leg_Front_R5
+    100020: Leg_Front_R6
+    100022: Leg_Front_R7
+    100024: Legs_Back_R1
+    100026: Legs_Back_R2
+    100028: Legs_Back_R3
+    100030: Legs_Back_R4
+    100032: Legs_Back_R5
+    100034: Legs_Back_R6
+    100036: Legs_Back_R7
+    100038: Neck1
+    100040: Neck2
+    100042: Neck3
+    100044: Reg_Front_R1
+    100046: Reg_Front_R2
+    100048: Reg_Front_R3
+    100050: Reg_Front_R4
+    100052: Reg_Front_R5
+    100054: Reg_Front_R6
+    100056: Reg_Front_R7
+    100058: Regs_Back_R1
+    100060: Regs_Back_R2
+    100062: Regs_Back_R3
+    100064: Regs_Back_R4
+    100066: Regs_Back_R5
+    100068: Regs_Back_R6
+    100070: Regs_Back_R7
+    100072: Skeleton_Root
+    100074: Spine1
+    100076: Spine2
+    100078: Spine3
+    100080: Tail1
+    100082: Tail2
+    100084: Tail3
+    100086: Tail4
+    100088: Tail5
+    100090: Tail6
+    400000: Black_Horse
+    400002: //RootNode
+    400004: directionalLight1
+    400006: directionalLight2
+    400008: Head
+    400010: Leg_Front_R1
+    400012: Leg_Front_R2
+    400014: Leg_Front_R3
+    400016: Leg_Front_R4
+    400018: Leg_Front_R5
+    400020: Leg_Front_R6
+    400022: Leg_Front_R7
+    400024: Legs_Back_R1
+    400026: Legs_Back_R2
+    400028: Legs_Back_R3
+    400030: Legs_Back_R4
+    400032: Legs_Back_R5
+    400034: Legs_Back_R6
+    400036: Legs_Back_R7
+    400038: Neck1
+    400040: Neck2
+    400042: Neck3
+    400044: Reg_Front_R1
+    400046: Reg_Front_R2
+    400048: Reg_Front_R3
+    400050: Reg_Front_R4
+    400052: Reg_Front_R5
+    400054: Reg_Front_R6
+    400056: Reg_Front_R7
+    400058: Regs_Back_R1
+    400060: Regs_Back_R2
+    400062: Regs_Back_R3
+    400064: Regs_Back_R4
+    400066: Regs_Back_R5
+    400068: Regs_Back_R6
+    400070: Regs_Back_R7
+    400072: Skeleton_Root
+    400074: Spine1
+    400076: Spine2
+    400078: Spine3
+    400080: Tail1
+    400082: Tail2
+    400084: Tail3
+    400086: Tail4
+    400088: Tail5
+    400090: Tail6
+    2100000: Black_Horse_material
+    4300000: Black_Horse
+    7400000: Take 001
+    9500000: //RootNode
+    10800000: directionalLight1
+    10800002: directionalLight2
+    13700000: Black_Horse
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black_Horse_material
+    second: {fileID: 2100000, guid: 601d7e4122dc439428ee19d8e55f6e42, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
