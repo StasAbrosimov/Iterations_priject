@@ -6,12 +6,14 @@ public class SceneController : MonoBehaviour, photonConnect.IPhotonConnectDelega
 {
     public photonConnect PhotonController;
     public UIController UIController;
+    public GameScript Game;
 
     // Start is called before the first frame update
     void Start()
     {
         this.PhotonController.PhotonDelegate = this;
         this.UIController.UIControllerDelegate = this;
+        this.UIController.InitialState();
     }
 
     private void UIController_OnDisconnectButtonClickEvent()
@@ -33,7 +35,7 @@ public class SceneController : MonoBehaviour, photonConnect.IPhotonConnectDelega
     #region IPhotonConnectDelegate
     public void ConnectedToTheMaster()
     {
-        this.UIController.ConnectedToState();
+        this.UIController.ConnectingToLobbyState();
     }
 
     public void DisconnectingProcessStart()
@@ -43,6 +45,7 @@ public class SceneController : MonoBehaviour, photonConnect.IPhotonConnectDelega
 
     public void DisconnectedFromPhoton()
     {
+        Game.gameObject.SetActive(false);
         this.UIController.DisconnectedState();
         //throw new System.NotImplementedException();
     }
@@ -56,6 +59,22 @@ public class SceneController : MonoBehaviour, photonConnect.IPhotonConnectDelega
     {
         this.UIController.ConnectionStartState();
     }
+
+    public void OnJoinedToLobby()
+    {
+        this.UIController.StartChoosingRoomState();
+    }
+
+    public void OnConnectingToRoom(string name)
+    {
+        this.UIController.StartConnectingToRoomState(name);
+    }
+
+    public void OnConnectedToRoom(string name)
+    {
+        this.UIController.ConnectedToRoomState(name);
+        Game.gameObject.SetActive(true);
+    }
     #endregion
 
     #region IUIControllerDelegate
@@ -67,6 +86,16 @@ public class SceneController : MonoBehaviour, photonConnect.IPhotonConnectDelega
     public void OnDisconnectButtonClick()
     {
         this.PhotonController.DisconnectFromPhoton();
+    }
+
+    public void CreateRoom(string roomName)
+    {
+       this.PhotonController.CreateOrJoinToRoom(roomName);
+    }
+
+    public void JoinToRoom(string roomName)
+    {
+        this.PhotonController.CreateOrJoinToRoom(roomName);
     }
     #endregion
 }

@@ -21,6 +21,11 @@ public class photonConnect : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        PhotonNetwork.autoJoinLobby = false;
+    }
+
     public void ConnectToPhoton()
     {
         this.PhotonDelegate.ConnectionStart();
@@ -37,16 +42,31 @@ public class photonConnect : MonoBehaviour
     private void OnConnectedToMaster()
     {
         this.PhotonDelegate?.ConnectedToTheMaster();
-        OnJointedLobby();
+        PhotonNetwork.JoinLobby(TypedLobby.Default);
     }
-    //private void On
-    //{
-    //   //PhotonNetwork.JoinLobby(TypedLobby.Default);
 
-    //}
-
-    private void OnJointedLobby()
+    public void CreateOrJoinToRoom(string name)
     {
+        this.PhotonDelegate?.OnConnectingToRoom(name);
+        if (string.IsNullOrEmpty(name))
+        {
+            PhotonNetwork.JoinRandomRoom();
+        }
+        else
+        {
+            PhotonNetwork.JoinOrCreateRoom(name, new RoomOptions() { IsOpen = true, IsVisible = true, MaxPlayers = 4 }, TypedLobby.Default);
+        }
+        
+    }
+
+    private void OnJoinedRoom()
+    {
+        this.PhotonDelegate.OnConnectedToRoom(PhotonNetwork.room?.Name);
+    }
+
+    private void OnJoinedLobby()
+    {
+        this.PhotonDelegate?.OnJoinedToLobby();
         Debug.Log("OnJointedLobby...");
     }
 
@@ -65,6 +85,9 @@ public class photonConnect : MonoBehaviour
     public interface IPhotonConnectDelegate
     {
         void ConnectedToTheMaster();
+        void OnJoinedToLobby();
+        void OnConnectingToRoom(string name);
+        void OnConnectedToRoom(string name);
         void DisconnectedFromPhoton();
         void DisconnectingProcessStart();
         void ErrorOccured();
