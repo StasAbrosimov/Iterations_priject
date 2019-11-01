@@ -24,7 +24,10 @@ public class PlayerMoveScriptPhoton : Photon.MonoBehaviour
         }
         else
         {
-            this.PlayerRigidbody.isKinematic = true;
+            if(!this.PlayerRigidbody.isKinematic)
+            {
+                this.PlayerRigidbody.isKinematic = true;
+            }
             this.MoveMeFromeNetwork();
         }
     }
@@ -48,7 +51,6 @@ public class PlayerMoveScriptPhoton : Photon.MonoBehaviour
                 else
                 {
                     this.PlayerRigidbody.velocity = new Vector2(this.PlayerRigidbody.velocity.x, this.PlayerRigidbody.velocity.y/2.0f);
-                    canDoubleJump = false;
                 }
             }
 
