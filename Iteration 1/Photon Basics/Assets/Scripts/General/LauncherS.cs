@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 public class LauncherS : MonoBehaviourPunCallbacks
 {
@@ -18,11 +19,17 @@ public class LauncherS : MonoBehaviourPunCallbacks
     [SerializeField]
     private byte maxPlayersPerRoom = 4;
 
-    
+    [SerializeField]
+    private GameObject controlPanel;
+
+    [SerializeField]
+    private GameObject progressLabel;
 
     #endregion
 
     #region Private fields
+
+    bool isConnecting = false;
 
     #endregion
 
@@ -36,7 +43,8 @@ public class LauncherS : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        
+        progressLabel.gameObject.SetActive(false);
+        controlPanel.SetActive(true);
     }
 
     // Update is called once per frame
@@ -51,11 +59,16 @@ public class LauncherS : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to master");
-        PhotonNetwork.JoinRandomRoom();
+        if (isConnecting)
+        {
+            PhotonNetwork.JoinRandomRoom();
+        }
     }
 
     public override void OnDisconnected(DisconnectCause cause)
-    {
+    {        
+        progressLabel.SetActive(false);
+        controlPanel.SetActive(true);
         Debug.Log(string.Format("OnDisconnected by cause: {0}", cause.ToString()));
     }
 
@@ -69,14 +82,27 @@ public class LauncherS : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom");
-    }
+        isConnecting = false;
+        // #Critical: We only load if we are the first player, else we rely on `PhotonNetwork.AutomaticallySyncScene` to sync our instance scene.
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+        {
+            Debug.Log("We load the 'Room for 1' ");
 
+
+            // #Critical
+            // Load the Room Level.
+            PhotonNetwork.LoadLevel("RoomFor_1");
+        }
+    }
     #endregion
 
     #region Publick Methods
     public void Connect()
     {
-        if(PhotonNetwork.IsConnected)
+        progressLabel.gameObject.SetActive(true);
+        controlPanel.SetActive(false);
+        isConnecting = true;
+        if (PhotonNetwork.IsConnected)
         {
             PhotonNetwork.JoinRandomRoom();
         }
