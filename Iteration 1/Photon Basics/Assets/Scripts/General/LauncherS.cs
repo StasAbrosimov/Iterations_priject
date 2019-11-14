@@ -45,6 +45,7 @@ public class LauncherS : MonoBehaviourPunCallbacks
     {
         progressLabel.gameObject.SetActive(false);
         controlPanel.SetActive(true);
+        ExitGames.Client.Photon.PhotonPeer.RegisterType(typeof(IamAServer), (byte)75, IamAServer.SerializeIamAServer, IamAServer.DeserializeIamAServer);
     }
 
     // Update is called once per frame

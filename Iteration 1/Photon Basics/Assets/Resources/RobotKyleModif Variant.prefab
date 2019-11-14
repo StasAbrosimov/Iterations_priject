@@ -284,6 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0063b6f1b14bd364d9b1805a391c4760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerUiPrefab: {fileID: 5030563060210504961, guid: 6e38e69a7d32ad24a8b37fb581e72447,
+    type: 3}
   beams: {fileID: 1123962112}
   Health: 1
 --- !u!114 &5629208442038012688
@@ -434,19 +436,19 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.0000000036670826
       objectReference: {fileID: 0}
-    - target: {fileID: 400074, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
+    - target: {fileID: 400038, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.00064981356
       objectReference: {fileID: 0}
-    - target: {fileID: 400074, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
+    - target: {fileID: 400038, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.010304518
       objectReference: {fileID: 0}
-    - target: {fileID: 400038, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
+    - target: {fileID: 400074, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.00064981356
       objectReference: {fileID: 0}
-    - target: {fileID: 400038, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
+    - target: {fileID: 400074, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.010304518
       objectReference: {fileID: 0}

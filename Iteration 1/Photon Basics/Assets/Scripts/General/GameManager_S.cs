@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class GameManager_S : MonoBehaviourPunCallbacks
 {
 
+    public GameObject playerPrefab;
+
     public static GameManager_S Instance;
 
     #region Photon Callbaks
@@ -51,6 +53,32 @@ public class GameManager_S : MonoBehaviourPunCallbacks
     void Start()
     {
         Instance = this;
+
+        // in case we started this demo with the wrong scene being active, simply load the menu scene
+        if (!PhotonNetwork.IsConnected)
+        {
+            SceneManager.LoadScene("PunBasics-Launcher");
+
+            return;
+        }
+
+
+        if (PlayerManager_S.LocalPlayerInstance == null)
+        {
+            if (playerPrefab == null)
+            {
+                Debug.LogError("playerPrefab is null");
+            }
+            else
+            {
+                Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
+                PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(0.0f, 5f, 0.0f), Quaternion.identity, 0);
+            }
+        }
+        else
+        {
+            Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
+        }
     }
 
     // Update is called once per frame

@@ -6,6 +6,13 @@ using UnityEngine.EventSystems;
 
 public class PlayerManager_S : MonoBehaviourPunCallbacks, IPunObservable
 {
+
+    public static GameObject LocalPlayerInstance;
+
+    [Tooltip("The Player's UI GameObject Prefab")]
+    [SerializeField]
+    public GameObject PlayerUiPrefab;
+
     #region Private Fields
 
     [Tooltip("The Beams GameObject to control")]
@@ -65,13 +72,18 @@ public class PlayerManager_S : MonoBehaviourPunCallbacks, IPunObservable
         {
             beams.SetActive(false);
         }
-    }
 
+        if(photonView.IsMine)
+        {
+            PlayerManager_S.LocalPlayerInstance = this.gameObject;
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     void Start()
     {
         CameraWork_S _cameraWork = this.gameObject.GetComponent<CameraWork_S>();
-
 
         if (_cameraWork != null)
         {
@@ -84,7 +96,29 @@ public class PlayerManager_S : MonoBehaviourPunCallbacks, IPunObservable
         {
             Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
         }
+
+        if (PlayerUiPrefab != null)
+        {
+            GameObject _uiGo = Instantiate(PlayerUiPrefab);
+            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+        }
+        else
+        {
+            Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
+        }
+
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
+
+    public override void OnDisable()
+    {
+        // Always call the base to remove callbacks
+        base.OnDisable();
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public IamAServer IamAServer = new IamAServer();
 
     /// <summary>
     /// MonoBehaviour method called on GameObject by Unity on every frame.
@@ -126,11 +160,35 @@ public class PlayerManager_S : MonoBehaviourPunCallbacks, IPunObservable
                 IsFiring = true;
             }
         }
+
         if (Input.GetButtonUp("Fire1"))
         {
             if (IsFiring)
             {
                 IsFiring = false;
+            }
+        }
+
+        if (IamAServer == null)
+        {
+            IamAServer = new IamAServer();
+        }
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (!IamAServer.IAmAServer)
+            {
+                IamAServer = new IamAServer();
+                IamAServer.IAmAServer = true;
+                IamAServer.StartedAt = System.DateTime.UtcNow;
+            }
+        }
+        else
+        {
+            if (IamAServer.IAmAServer)
+            {
+                IamAServer.IAmAServer = false;
+                IamAServer.StartedAt = System.DateTime.MinValue;
             }
         }
     }
@@ -141,12 +199,31 @@ public class PlayerManager_S : MonoBehaviourPunCallbacks, IPunObservable
         {
             stream.SendNext(this.IsFiring);
             stream.SendNext(this.Health);
+            stream.SendNext(this.IamAServer);
         }
         else
         {
             this.IsFiring = (bool)stream.ReceiveNext();
             this.Health = (float)stream.ReceiveNext();
+            this.IamAServer = (IamAServer)stream.ReceiveNext();            
         }
+    }
+
+    void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadingMode)
+    {
+        this.CalledOnLevelWasLoaded(scene.buildIndex);
+    }
+
+    void CalledOnLevelWasLoaded(int level)
+    {
+        // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
+        if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
+        {
+            transform.position = new Vector3(0f, 5f, 0f);
+        }
+
+        GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
+        _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
     }
 
     #endregion
