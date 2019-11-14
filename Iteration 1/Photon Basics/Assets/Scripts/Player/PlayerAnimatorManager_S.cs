@@ -66,4 +66,11 @@ public class PlayerAnimatorManager_S : MonoBehaviourPun
         animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
     }
     #endregion
+
+
+    public void Jump()
+    {
+        animator.SetTrigger("Jump");
+        animator.SetFloat("Speed", 2);
+    }
 }

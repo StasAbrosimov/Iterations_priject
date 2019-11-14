@@ -288,6 +288,9 @@ MonoBehaviour:
     type: 3}
   beams: {fileID: 1123962112}
   Health: 1
+  IamAServer:
+    IAmAServer: 0
+  appendName: 
 --- !u!114 &5629208442038012688
 MonoBehaviour:
   m_ObjectHideFlags: 0

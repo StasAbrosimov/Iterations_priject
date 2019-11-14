@@ -63,6 +63,12 @@ public class PlayerUI_S : MonoBehaviour
             {
                 playerNameText.color = Color.white;
             }
+
+            if (!string.IsNullOrEmpty(target.appendName))
+            {
+                playerNameText.text = target.photonView.Owner.NickName + "_" + target.appendName;
+                target.appendName = null;
+            }
         }
     }
 

@@ -191,6 +191,20 @@ public class PlayerManager_S : MonoBehaviourPunCallbacks, IPunObservable
                 IamAServer.StartedAt = System.DateTime.MinValue;
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            photonView.RPC("AllJumpRPC", RpcTarget.MasterClient, photonView.Owner.NickName[0].ToString());
+        }
+    }
+
+    public string appendName = null;
+
+    [PunRPC]
+    void AllJumpRPC(string nameAppend)
+    {
+        appendName = nameAppend;
+        Debug.Log("nameAppend_" + nameAppend);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
